@@ -22,5 +22,8 @@
 	"scripts": {
 		"test": "func () forge test $(if [ $1 != '' ]; then echo '--match-test' $1  ; fi) $(if [ $2 != '' ]; then echo '-vvvv'; else '-vvv'  ; fi); func  ",
 		"slither": "slither ."
+	},
+	"dependencies": {
+		"@chainlink/contracts": "^0.7.1"
 	}
 }

@@ -11,7 +11,11 @@
     "dependencies": {
         "@chainlink/env-enc": "^1.0.5",
         "@chainlink/functions-toolkit": "^0.2.5",
+        "arg": "^5.0.2",
         "dotenv": "^16.3.1",
-        "ethers": "^5.7.2"
+        "ethers": "^5.7.2",
+        "typescript": "^5.2.2",
+        "viem": "^1.14.0",
+        "wretch": "^2.7.0"
     }
 }

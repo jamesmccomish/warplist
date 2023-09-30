@@ -1,6 +1,9 @@
 # modules
 *node_modules
+*package-lock.json 
 
 # foundry
 *cache
 *out
+
+*env

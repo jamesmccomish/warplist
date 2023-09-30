@@ -4,10 +4,10 @@ const {
     decodeResult,
     FulfillmentCode,
   } = require("@chainlink/functions-toolkit");
-  const functionsConsumerAbi = require("./abi/functionsClient.json");
+  const functionsConsumerAbi = require("../../../abi/functionsClient.json");
   const ethers = require("ethers");
   require("@chainlink/env-enc").config();
-  require('dotenv').config({ path: './.env' });
+  require('dotenv').config({ path: '../../../.env' });
 
 
   const consumerAddress = "0x8dFf78B7EE3128D00E90611FBeD20A71397064D9"; // REPLACE this with your Functions consumer address

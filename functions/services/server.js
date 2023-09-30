@@ -6,13 +6,14 @@ const port = 3000;
 const { getFarcasterLikes } = require('./function-code/get-farcaster-likes');
 
 // Host function at endpoint
-app.get('/', async (req, res) => {
-    console.log('getLikes ---');
+app.get('/get-farcaster-likes', async (req, res) => {
+    console.log('endpoint hit ---');
 
     try {
         const result = await getFarcasterLikes('0x92dc68040066319b2174c791f269af3ea5ac1bd1');
-        console.log('result', result);
-        res.send('Hello World!');
+
+        res.send('Results: ' + JSON.stringify(result));
+
     } catch (error) {
         console.error('Error in handling request:', error);
         res.status(500).send('Internal Server Error');

@@ -10,10 +10,13 @@ contract FarcasterRestrictedNft is ERC721, FarcasterLikesChainlinkFunction {
 
     uint256 public currentId;
 
-    constructor(string memory _name, string memory _symbol, address _router, string memory _farcasterApiCallLogic)
-        ERC721(_name, _symbol)
-        FarcasterLikesChainlinkFunction(_router, _farcasterApiCallLogic)
-    {}
+    constructor(
+        string memory _name,
+        string memory _symbol,
+        address _router,
+        string memory _farcasterApiCallLogic,
+        uint64 _subscriptionId
+    ) ERC721(_name, _symbol) FarcasterLikesChainlinkFunction(_router, _farcasterApiCallLogic, _subscriptionId) {}
 
     /// -----------------------------------------------------------------------
     /// ERC721 FUNCTIONS

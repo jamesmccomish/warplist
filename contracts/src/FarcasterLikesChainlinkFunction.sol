@@ -25,8 +25,10 @@ contract FarcasterLikesChainlinkFunction is FunctionsClient {
     // We store the stringified version of the .js function to be executed
     string farcasterApiCallLogic;
 
-    constructor(address router, string memory _farcasterApiCallLogic) FunctionsClient(router) {
+    constructor(address router, string memory _farcasterApiCallLogic, uint64 _subscriptionId) FunctionsClient(router) {
         farcasterApiCallLogic = _farcasterApiCallLogic;
+
+        subscriptionId = _subscriptionId;
     }
 
     /// -----------------------------------------------------------------------
@@ -48,7 +50,7 @@ contract FarcasterLikesChainlinkFunction is FunctionsClient {
     //     fulfillRequest(requestId, response, err);
     // }
 
-    function fulfillRequest(bytes32 requestId, bytes memory response, bytes memory err) internal override {
+    function fulfillRequest(bytes32 requestId, bytes memory response, bytes memory err) internal virtual override {
         latestResponse = response;
         latestError = err;
         //emit OCRResponse(requestId, response, err);

@@ -1,0 +1,26 @@
+{
+	"name": "@jamesmccomish/fast-foundry-template",
+	"description": "Foundry-based template for developing Solidity smart contracts, based off https://github.com/PaulRBerg",
+	"version": "1.0.0",
+	"author": {
+		"name": "James McComish",
+		"url": "https://github.com/jamesmccomish"
+	},
+	"devDependencies": {
+		"prettier": "^3.0.3"
+	},
+	"keywords": [
+		"blockchain",
+		"ethereum",
+		"forge",
+		"foundry",
+		"smart-contracts",
+		"solidity",
+		"template"
+	],
+	"private": true,
+	"scripts": {
+		"test": "func () forge test $(if [ $1 != '' ]; then echo '--match-test' $1  ; fi) $(if [ $2 != '' ]; then echo '-vvvv'; else '-vvv'  ; fi); func  ",
+		"slither": "slither ."
+	}
+}

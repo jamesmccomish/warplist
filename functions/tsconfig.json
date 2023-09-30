@@ -6,7 +6,7 @@
       "strict": true,
       "esModuleInterop": true
     },
-    "include": ["**/*.ts"],
+    "include": ["**/*.ts", "services/function-code/get-farcaster-likes.js", "services/utils/warpcaster-api.js"],
     "exclude": ["node_modules"],
     "baseUrl": ".",
     "paths": {

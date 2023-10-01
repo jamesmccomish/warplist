@@ -33,7 +33,7 @@ contract FarcasterRestrictedNft is ERC721, FarcasterLikesChainlinkFunction {
         req.setArgs(args);
 
         // Send req to chainlink fn
-        bytes32 assignedReqID = _sendRequest(req.encodeCBOR(), uint32(347), 100000, "fun-polygon-mumbai-1"); // TODO fix gasLimit
+        bytes32 assignedReqID = _sendRequest(req.encodeCBOR(), subscriptionId, 100000, "fun-polygon-mumbai-1"); // TODO fix gasLimit
         requestIdToMinter[uint256(assignedReqID)] = msg.sender;
     }
 

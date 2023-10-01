@@ -1,10 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import {
-    FunctionsClient,
-    Functions
-} from "../node_modules/@chainlink/contracts/src/v0.8/functions/dev/v0_0_0/FunctionsClient.sol";
+import {FunctionsClient} from "../node_modules/@chainlink/contracts/src/v0.8/functions/dev/v1_0_0/FunctionsClient.sol";
+import {FunctionsRequest} from
+    "../node_modules/@chainlink/contracts/src/v0.8/functions/dev/v1_0_0/libraries/FunctionsRequest.sol";
 
 // TODO
 // - link to chainlink
@@ -23,7 +22,7 @@ contract FarcasterLikesChainlinkFunction is FunctionsClient {
     bytes public latestError;
 
     // We store the stringified version of the .js function to be executed
-    string farcasterApiCallLogic;
+    string public farcasterApiCallLogic;
 
     constructor(address router, string memory _farcasterApiCallLogic, uint64 _subscriptionId) FunctionsClient(router) {
         farcasterApiCallLogic = _farcasterApiCallLogic;
@@ -42,13 +41,6 @@ contract FarcasterLikesChainlinkFunction is FunctionsClient {
     /// -----------------------------------------------------------------------
     /// CHAINLINK FUNCTIONS
     /// -----------------------------------------------------------------------
-
-    // function handleOracleFulfillment(bytes32 requestId, bytes memory response, bytes memory err) external override {
-    //     if (msg.sender != address(i_router)) {
-    //         revert OnlyRouterCanFulfill();
-    //     }
-    //     fulfillRequest(requestId, response, err);
-    // }
 
     function fulfillRequest(bytes32 requestId, bytes memory response, bytes memory err) internal virtual override {
         latestResponse = response;

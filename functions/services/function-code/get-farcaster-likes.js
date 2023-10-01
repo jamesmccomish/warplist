@@ -26,10 +26,44 @@ const getFarcasterLikes = async (castHash) => {
     return filteredReactionData;
   } catch (error) {
     console.error('Error in getFarcasterLikes:', error);
+    return []
   }
 };
 
-module.exports = { getFarcasterLikes };
+const checkMatchingAddress = async (likeItems, callerAddress) => {
+  try {
+    const hasMatchingAddress = await Promise.all(
+      likeItems.map(async (item) => {
+        try {
+          const fid = item.reactor.fid;
+
+          // Uncomment for production
+          // const verificationResponse = await warpcaster(`/verifications?fid=${callerAddress}`);
+          // Comment for production
+          const verificationResponse = await warpcaster(`/verifications?fid=3`);
+          const address = verificationResponse.result.verifications[0]?.address;
+
+          console.log({ address });
+
+          // Check if the address matches the callerAddress
+          return address === callerAddress;
+        } catch (verificationError) {
+          console.error('Error in verification request:', verificationError);
+          // Handle verification error, e.g., by returning false
+          return false;
+        }
+      })
+    );
+
+    // Return 1 if there is a match, otherwise return 0
+    return hasMatchingAddress.includes(true) ? 1 : 0;
+  } catch (error) {
+    console.error('Error in checkMatchingAddress:', error);
+    return 0;
+  }
+};
+
+module.exports = { getFarcasterLikes, checkMatchingAddress };
 
 
 /** @dev reaction object example

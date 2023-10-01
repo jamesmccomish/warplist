@@ -3,20 +3,35 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css'; 
 
-//import {getFarcasterLikes} from '../../functions/services/function-code/get-farcaster-likes'
+import {getFarcasterLikes} from '../../functions/services/function-code/get-farcaster-likes'
 import React from 'react';
 
 const Home: NextPage = () => {
   const [casthash, setCastHash] = React.useState(null)
   const [castSelected, setCastSelected] = React.useState(false)
+  const [farcasterLikes, setFarcasterLikes] = React.useState(null)
+  
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (casthash) {
+          const likes = await getFarcasterLikes(casthash);
+          setFarcasterLikes(likes);
+        }
+      } catch (error) {
+        console.error('Error fetching farcaster likes:', error);
+      }
+    };
 
-  //const farcasterLikes = getFarcasterLikes('0xcc1cb08481aa0b048588a59a608f27c7214ac79e')
+    fetchData();
+  }, [castSelected]);
 
-  //console.log({farcasterLikes})
+  React.useEffect(() => {
+    if(!casthash || casthash == '') setFarcasterLikes(null);
+
+  }, [casthash]);
 
   const handleInputChange = (event) => {
-    setCastSelected(false);
-
     setCastHash(event.target.value);
   };
 
@@ -43,6 +58,10 @@ const Home: NextPage = () => {
         Welcome to Farcaster Chainlink NFT Whitelist!
       </h1>
 
+      <p >
+        Enter a cast hash to see who has liked it. (eg. 0xcc1cb08481aa0b048588a59a608f27c7214ac79e)
+      </p>
+
       <div className={styles.inputContainer}>
       <input
             type="text"
@@ -56,13 +75,18 @@ const Home: NextPage = () => {
           </button>
       </div>
 
-      <div className={styles.grid}>
-        <a className={styles.card} href="https://wagmi.sh">
-          <h2>YOUR CAST HERE &rarr;</h2>
-          <p>....</p>
-        </a>
-      </div>
-
+      <div className={styles.usernamesContainer}>
+        {!!farcasterLikes && 
+              <h1 className={styles.title}>
+              Your Whitelist:
+            </h1>
+        }
+          {farcasterLikes?.map((user, index) => (
+            <div key={index} className={styles.usernameBox}>
+              {user.reactor.username}
+            </div>
+          ))}
+        </div>
 
     </main>
 

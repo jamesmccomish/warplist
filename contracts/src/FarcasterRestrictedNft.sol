@@ -28,6 +28,10 @@ contract FarcasterRestrictedNft is ERC721, FarcasterLikesChainlinkFunction {
         FunctionsRequest.Request memory req;
         req.initializeRequestForInlineJavaScript(farcasterApiCallLogic);
 
+        string[] memory args = new string[](1);
+        args[0] = addressToString(msg.sender);
+        req.setArgs(args);
+
         // Send req to chainlink fn
         bytes32 assignedReqID = _sendRequest(req.encodeCBOR(), uint32(347), 100000, "fun-polygon-mumbai-1"); // TODO fix gasLimit
         requestIdToMinter[uint256(assignedReqID)] = msg.sender;
@@ -58,5 +62,25 @@ contract FarcasterRestrictedNft is ERC721, FarcasterLikesChainlinkFunction {
         uint256 isValidMinter = abi.decode(response, (uint256));
 
         if (isValidMinter == 1) _mint(requestIdToMinter[uint256(requestId)], currentId++);
+    }
+
+    function addressToString(address _pool) public pure returns (string memory _uintAsString) {
+        uint256 _i = uint256(uint160(_pool));
+        if (_i == 0) {
+            return "0";
+        }
+        uint256 j = _i;
+        uint256 len;
+        while (j != 0) {
+            len++;
+            j /= 10;
+        }
+        bytes memory bstr = new bytes(len);
+        uint256 k = len - 1;
+        while (_i != 0) {
+            bstr[k--] = bytes1(uint8(48 + _i % 10));
+            _i /= 10;
+        }
+        return string(bstr);
     }
 }

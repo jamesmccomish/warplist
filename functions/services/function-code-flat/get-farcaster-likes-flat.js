@@ -1,15 +1,14 @@
-/**
- * @dev a flattened version of the code to stringify and inline on the contract
- */
 
 const baseUrl = 'https://api.warpcast.com';
 const version = 'v2';
+
+const callerAddress = args[0];
 
 const warpcaster = async (path) => {
   const url = `${baseUrl}/${version}${path}`;
 
   try {
-    const response = await fetch(url, {
+    const response = await Functions.makeHttpRequest(url, {
       headers: {
         'Content-Type': 'application/json', // Adjust headers as needed
         // Add any other headers here
@@ -42,6 +41,8 @@ const getFarcasterLikes = async (castHash) => {
     // Filter only 'like' items
     const likeItems = reactions.filter(item => item.type === 'like');
 
+    // check agains address here (callerAddress)
+
     // Extract required properties 
     const filteredReactionData = likeItems.map(item => ({
       hash: item.hash,
@@ -61,3 +62,5 @@ const getFarcasterLikes = async (castHash) => {
 
 // TODO handle input of args to the function
 getFarcasterLikes('0x92dc68040066319b2174c791f269af3ea5ac1bd1');
+
+return Functions.encodeUint256(1);

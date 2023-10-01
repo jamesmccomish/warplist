@@ -94,6 +94,20 @@
   line-height: 1.5;
 }
 
+.input-container {
+  text-align: center;
+  margin-bottom: 2rem; /* Add some spacing below the input box */
+}
+
+.input-box {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 300px;
+  margin-right: 1rem; /* Optional: Add some spacing to the right of the input box */
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;

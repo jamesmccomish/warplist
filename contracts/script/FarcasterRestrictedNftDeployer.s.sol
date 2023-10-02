@@ -12,8 +12,7 @@ contract FarcasterRestrictedNftDeployer is Script {
     FarcasterRestrictedNft public farcasterRestrictedNft;
 
     function run() public {
-        // Private key for burner account... not ideal
-        vm.startBroadcast(uint256(0x14e7a6739e32f00730105e3337602e39c5a0c39a069b8a9812e7e277b3c26b0f));
+        vm.startBroadcast(vm.envUint("PRIVATE_KEY"));
 
         farcasterRestrictedNft = new FarcasterRestrictedNft(
             "FarcasterRestrictedNft",

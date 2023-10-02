@@ -41,7 +41,7 @@ const getFarcasterLikes = async (castHash, callerAddress) => {
     // Filter only 'like' items
     const likeItems = reactions.filter(item => item.type === 'like');
 
-    console.log('likeItems', likeItems)
+    // console.log('likeItems', likeItems)
 
     // Check if there is at least one like with a matching address
     const hasMatchingAddress = await Promise.all(
@@ -55,7 +55,8 @@ const getFarcasterLikes = async (castHash, callerAddress) => {
           const verificationResponse = await warpcaster(`/verifications?fid=3`);
           const address = verificationResponse.result.verifications[0]?.address;
 
-          console.log({ address })
+          //console.log({ address })
+
           // Check if the address matches the callerAddress
           return address === callerAddress;
         } catch (verificationError) {

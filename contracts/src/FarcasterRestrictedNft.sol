@@ -5,6 +5,11 @@ import {ERC721} from "../lib/solbase/src/tokens/ERC721/ERC721.sol";
 
 import {FarcasterLikesChainlinkFunction, FunctionsRequest} from "./FarcasterLikesChainlinkFunction.sol";
 
+/**
+ * @notice - This contract is a restricted NFT that can only be minted by users who have liked the Farcaster cast
+ * @dev WIP !!! USE FOR TESTING ONLY !!!
+ * @author James McComish (https://github.com/jamesmccomish)
+ */
 contract FarcasterRestrictedNft is ERC721, FarcasterLikesChainlinkFunction {
     using FunctionsRequest for FunctionsRequest.Request;
 

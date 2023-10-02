@@ -5,10 +5,6 @@ import {FunctionsClient} from "../node_modules/@chainlink/contracts/src/v0.8/fun
 import {FunctionsRequest} from
     "../node_modules/@chainlink/contracts/src/v0.8/functions/dev/v1_0_0/libraries/FunctionsRequest.sol";
 
-// TODO
-// - link to chainlink
-// - add handler for allowing mints
-
 /**
  * @title The Chainlink Functions client contract
  * @notice Calls a functions to check wither a user has liked a Farcaster post

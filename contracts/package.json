@@ -1,6 +1,6 @@
 {
-	"name": "@jamesmccomish/fast-foundry-template",
-	"description": "Foundry-based template for developing Solidity smart contracts, based off https://github.com/PaulRBerg",
+	"name": "@jamesmccomish/warplist-contracts",
+	"description": "Contracts for Facaster Chainlink NFT",
 	"version": "1.0.0",
 	"author": {
 		"name": "James McComish",

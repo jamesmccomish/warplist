@@ -7,6 +7,11 @@ import {Script, console2} from "../lib/forge-std/src/Script.sol";
 
 import {FileReader} from "./FileReader.s.sol";
 
+/**
+ * @notice This contract deploys FarcasterRestrictedNft.sol
+ * @dev We read the javascript function from a file using ffi and deploy the contract
+ *      with the function logic and subscriptionId set
+ */
 contract FarcasterRestrictedNftDeployer is Script, FileReader {
     uint64 subscriptionId;
 

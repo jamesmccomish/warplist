@@ -1,6 +1,6 @@
 # Warplist
 
-> Turn and cast into a whitelist for an NFT mint.
+> Turn any Warpcast post into a whitelist for an NFT mint.
 
 This project is intended to allow a creator on Farcater to cast about an upcoming NFT mint, and reward any follower who likes it with whitelist for the mint.
 
